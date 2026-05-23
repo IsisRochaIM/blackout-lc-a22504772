@@ -13,48 +13,9 @@ namespace Blackout
             int dificuldade = Convert.ToInt32(Console.ReadLine());
 
             //Cria 3 arrays consoante a dificuldade escolhida
-            int[][] lists1 = new int[4][];
-            int[][] lists2 = new int[5][];
-            int[][] lists3 = new int[6][];
-
-
-            //Conforme a dificuldade escolhida ele preenche o array
-            //Tecnicamente podia fazer isso sem os iffs, preencher todos mas dps so usar o certo
-            if(dificuldade == 0)
-            {
-                int[] list1 = new int[4] {0,0,0,0};
-                int[] list2 = new int[4] {0,0,0,0};
-                int[] list3 = new int[4] {0,0,0,0};
-                int[] list4 = new int[4] {0,0,0,0};
-
-                lists1 = new int[][] {  list1 ,  list2 ,  list3 ,  list4  };
-            }
-            else if(dificuldade == 1)
-            {
-                int[] list1 = new int[5] {0,0,0,0,0};
-                int[] list2 = new int[5] {0,0,0,0,0};
-                int[] list3 = new int[5] {0,0,0,0,0};
-                int[] list4 = new int[5] {0,0,0,0,0};
-                int[] list5 = new int[5] {0,0,0,0,0};
-
-                lists2 = new int[][] {  list1 ,  list2 ,  list3 ,  list4 , list5 };
-            }
-            else if(dificuldade == 2)
-            {
-                int[] list1 = new int[6] {0,0,0,0,0,0};
-                int[] list2 = new int[6] {0,0,0,0,0,0};
-                int[] list3 = new int[6] {0,0,0,0,0,0};
-                int[] list4 = new int[6] {0,0,0,0,0,0};
-                int[] list5 = new int[6] {0,0,0,0,0,0};
-                int[] list6 = new int[6] {0,0,0,0,0,0};
-
-                lists3 = new int[][] {  list1 ,  list2 ,  list3 ,  list4, list5, list6  };
-            }
-
-
-
-
-
+            int[,] lists1 = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
+            int[,] lists2 = {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}};
+            int[,] lists3 = {{0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}};
 
 
 
@@ -68,126 +29,32 @@ namespace Blackout
             while(numerofinal != 16)
             {
                 
-                //Mostrar o tabuleiro:
-                foreach(int[] lista in lists1)
-                {
-                    foreach(int estado in lista)
-                    {
-                        Console.Write(estado);
-                    }
-                    Console.WriteLine();
-                }
+
+                Mostrar(lists1);
+
 
                 //Reseta a conagem de peças, para não somar as da jogada anterior
                 numerofinal = 0;
 
 
                 //Pede as cordenadas da peça
-                Console.WriteLine("Coloca o X que desejas alterar");
-                int x = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Coloca o Y que desejas alterar");
-                int y = Convert.ToInt32(Console.ReadLine());
-
-
-                //
-                //Estes trys todos basicamente vão verificar se a peça está ativa ou não
-                //Tanto a peça selecionada com as em volta
-                //Dependendo de como estiver, ele inverte o estado
-                //Caso a peça não exista, ele simplesmente não faz nada (por isso os trys)
-                //
-                try
-                {
-                    if(lists1[x][y] == 0)
-                    {
-                        lists1[x][y] = 1;
-                    }
-                    else
-                    {
-                        lists1[x][y] = 0;
-                    }
-                }
-                catch
-                {
-                    
-                }
-
-                try
-                {
-                    if(lists1[x+1][y] == 0)
-                    {
-                        lists1[x+1][y] = 1;
-                    }
-                    else
-                    {
-                        lists1[x+1][y] = 0;
-                    }
-                }
-                catch
-                {
-                    
-                }
-
-
-                try
-                {
-                    if(lists1[x-1][y] == 0)
-                    {
-                        lists1[x-1][y] = 1;
-                    }
-                    else
-                    {
-                        lists1[x-1][y] = 0;
-                    }
-                }
-                catch
-                {
-                    
-                }
-
-
-                try
-                {
-                    if(lists1[x][y+1] == 0)
-                    {
-                        lists1[x][y+1] = 1;
-                    }
-                    else
-                    {
-                        lists1[x][y+1] = 0;
-                    }
-                }
-                catch
-                {
-                    
-                }
-
-
-                try
-                {
-                    if(lists1[x][y-1] == 0)
-                    {
-                        lists1[x][y-1] = 1;
-                    }
-                    else
-                    {
-                        lists1[x][y-1] = 0;
-                    }
-                }
-                catch
-                {
-                    
-                }
+                int x = 0;
+                int y = 0;
+                (x, y) = Coordenadas(x, y);
                 
 
+                AlteraValores(x, y, lists1);
+                
+                
                 //Conta quantas peças estão ativas
                 //Serve para caso estejam todas, ele sair dps do while
-                foreach(int[] teste in lists1)
-                {
-                    foreach(int testinho in teste)
-                    {
-                        numerofinal += testinho;
-                    }
-                }
+                for (int i = 0; i < lists1.GetLength(0); i++) 
+                { 
+                    for (int j = 0; j < lists1.GetLength(1); j++) 
+                    { 
+                        numerofinal +=lists1[i, j]; 
+                    } 
+                }  
 
             }
 
@@ -195,6 +62,121 @@ namespace Blackout
             //Mostra que ganhou
             Console.WriteLine("Parabens");
             
+        }
+
+        public static void Mostrar(int[,] lists1)
+        {
+            for (int i = 0; i < lists1.GetLength(0); i++) 
+                { 
+                    for (int j = 0; j < lists1.GetLength(1); j++) 
+                    { 
+                        Console.Write(lists1[i, j]); 
+                    } 
+                    Console.WriteLine();
+                }  
+        }
+
+        public static (int, int) Coordenadas(int x, int y)
+        {
+            //Pede as cordenadas da peça
+            Console.WriteLine("Coloca o X que desejas alterar");
+            x = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Coloca o Y que desejas alterar");
+            y = Convert.ToInt32(Console.ReadLine());
+
+            return (x, y);
+        }
+
+        public static void AlteraValores(int x, int y, int[,] lists1)
+        {
+            //
+            //Estes trys todos basicamente vão verificar se a peça está ativa ou não
+            //Tanto a peça selecionada com as em volta
+            //Dependendo de como estiver, ele inverte o estado
+            //Caso a peça não exista, ele simplesmente não faz nada (por isso os trys)
+            //
+            try
+            {
+                if(lists1[x,y] == 0)
+                {
+                    lists1[x,y] = 1;
+                }
+                else
+                {
+                    lists1[x,y] = 0;
+                }
+            }
+            catch
+            {
+                
+            }
+
+            try
+            {
+                if(lists1[x+1,y] == 0)
+                {
+                    lists1[x+1,y] = 1;
+                }
+                else
+                {
+                    lists1[x+1,y] = 0;
+                }
+            }
+            catch
+            {
+                
+            }
+
+
+            try
+            {
+                if(lists1[x-1,y] == 0)
+                {
+                    lists1[x-1,y] = 1;
+                }
+                else
+                {
+                    lists1[x-1,y] = 0;
+                }
+            }
+            catch
+            {
+                
+            }
+
+
+            try
+            {
+                if(lists1[x,y+1] == 0)
+                {
+                    lists1[x,y+1] = 1;
+                }
+                else
+                {
+                    lists1[x,y+1] = 0;
+                }
+            }
+            catch
+            {
+                
+            }
+
+
+            try
+            {
+                if(lists1[x,y-1] == 0)
+                {
+                    lists1[x,y-1] = 1;
+                }
+                else
+                {
+                    lists1[x,y-1] = 0;
+                }
+            }
+            catch
+            {
+                
+            }
         }
     }
 }
