@@ -10,6 +10,8 @@ namespace Blackout
         
         public int[,] boardC;
 
+        private PrototypeView view;
+
         public void Criador(int tamanho)
         {
             int[,] board = new int[tamanho, tamanho];
@@ -55,7 +57,7 @@ namespace Blackout
             }
             catch
             {
-                Console.WriteLine("Coordenada invalida");
+                view.ShowErrorInvalidC0ordinateMensage();
                 erro = true;
             }
 
