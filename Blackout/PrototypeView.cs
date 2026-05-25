@@ -40,6 +40,7 @@ namespace Blackout
                 {
                     //Pergunta ao jogador qual a dificuldade do jogo
                     Console.WriteLine("Qual é o nivel de dificuldade do jogo ?");
+                    Console.WriteLine("0 - Facil, 1 - Medio, 2 - Dificil");
                     dif = Convert.ToInt32(Console.ReadLine());
                     return dif;
                 }
@@ -48,9 +49,18 @@ namespace Blackout
                     
                 }
             }
-            
-
-
+        }
+        
+        public void ListagemBoard(int[,] board)
+        {
+            for (int i = 0; i < board.GetLength(0); i++) 
+            { 
+                for (int j = 0; j < board.GetLength(1); j++) 
+                { 
+                    Console.Write(board[i, j]); 
+                } 
+                Console.WriteLine();
+            }  
         }
     }
 }
