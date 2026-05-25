@@ -8,16 +8,12 @@ namespace Blackout
     {
         private static void Main(string[] args)
         {
-            //Pergunta ao jogador qual a dificuldade do jogo
-            Console.WriteLine("Qual é o nivel de dificuldade do jogo ?");
-            int dificuldade = Convert.ToInt32(Console.ReadLine());
 
-            //Cria 3 arrays consoante a dificuldade escolhida
-            int[,] lists1 = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
-            int[,] lists2 = {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}};
-            int[,] lists3 = {{0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}, {0,0,0,0,0,0}};
+            Controller controller = new Controller();
+            PrototypeView view = new PrototypeView();
+            Board board = new Board();
 
-
+            controller.Run(view, board);
 
             //
             //Estepedaço de codigo basicamente altera a posiçao que o jogador selecionou
@@ -25,6 +21,7 @@ namespace Blackout
             //No final conta quantas peças estão ativas
             //Só quando todas elas tiverem ativas é que sai do while
             //
+            /*
             int numerofinal = 0;
             while(numerofinal != 16)
             {
@@ -67,13 +64,13 @@ namespace Blackout
         public static void Mostrar(int[,] lists1)
         {
             for (int i = 0; i < lists1.GetLength(0); i++) 
+            { 
+                for (int j = 0; j < lists1.GetLength(1); j++) 
                 { 
-                    for (int j = 0; j < lists1.GetLength(1); j++) 
-                    { 
-                        Console.Write(lists1[i, j]); 
-                    } 
-                    Console.WriteLine();
-                }  
+                    Console.Write(lists1[i, j]); 
+                } 
+                Console.WriteLine();
+            }  
         }
 
         public static (int, int) Coordenadas(int x, int y)
@@ -177,6 +174,8 @@ namespace Blackout
             {
                 
             }
+            */
         }
+        
     }
 }

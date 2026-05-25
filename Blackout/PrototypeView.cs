@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Spectre.Console;
 
 namespace Blackout
@@ -29,6 +30,27 @@ namespace Blackout
             grid.MaxWidth = 20;
 
             AnsiConsole.Write(grid);
+        }
+
+        public int Dificuldade(int dif)
+        {
+            while (true)
+            {
+                try
+                {
+                    //Pergunta ao jogador qual a dificuldade do jogo
+                    Console.WriteLine("Qual é o nivel de dificuldade do jogo ?");
+                    dif = Convert.ToInt32(Console.ReadLine());
+                    return dif;
+                }
+                catch
+                {
+                    
+                }
+            }
+            
+
+
         }
     }
 }
