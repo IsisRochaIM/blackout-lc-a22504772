@@ -40,6 +40,8 @@ namespace Blackout
             //Dependendo de como estiver, ele inverte o estado
             //Caso a peça não exista, ele simplesmente não faz nada (por isso os trys)
             //
+
+            bool erro = false;
             try
             {
                 if(lists1[x,y] == 0)
@@ -53,74 +55,89 @@ namespace Blackout
             }
             catch
             {
-                
+                Console.WriteLine("Coordenada invalida");
+                erro = true;
             }
 
-            try
+            if(erro == false)
             {
-                if(lists1[x+1,y] == 0)
+                try
                 {
-                    lists1[x+1,y] = 1;
+                    if(lists1[x+1,y] == 0)
+                    {
+                        lists1[x+1,y] = 1;
+                    }
+                    else
+                    {
+                        lists1[x+1,y] = 0;
+                    }
                 }
-                else
+                catch
                 {
-                    lists1[x+1,y] = 0;
+                    
                 }
             }
-            catch
+            
+
+            if(erro == false)
             {
-                
+
+                try
+                {
+                    if(lists1[x-1,y] == 0)
+                    {
+                        lists1[x-1,y] = 1;
+                    }
+                    else
+                    {
+                        lists1[x-1,y] = 0;
+                    }
+                }
+                catch
+                {
+                    
+                }
+            }
+
+            if(erro == false)
+            {
+
+                try
+                {
+                    if(lists1[x,y+1] == 0)
+                    {
+                        lists1[x,y+1] = 1;
+                    }
+                    else
+                    {
+                        lists1[x,y+1] = 0;
+                    }
+                }
+                catch
+                {
+                    
+                }
             }
 
 
-            try
+            if(erro == false)
             {
-                if(lists1[x-1,y] == 0)
-                {
-                    lists1[x-1,y] = 1;
-                }
-                else
-                {
-                    lists1[x-1,y] = 0;
-                }
-            }
-            catch
-            {
-                
-            }
 
-
-            try
-            {
-                if(lists1[x,y+1] == 0)
+                try
                 {
-                    lists1[x,y+1] = 1;
+                    if(lists1[x,y-1] == 0)
+                    {
+                        lists1[x,y-1] = 1;
+                    }
+                    else
+                    {
+                        lists1[x,y-1] = 0;
+                    }
                 }
-                else
+                catch
                 {
-                    lists1[x,y+1] = 0;
+                    
                 }
-            }
-            catch
-            {
-                
-            }
-
-
-            try
-            {
-                if(lists1[x,y-1] == 0)
-                {
-                    lists1[x,y-1] = 1;
-                }
-                else
-                {
-                    lists1[x,y-1] = 0;
-                }
-            }
-            catch
-            {
-                
             }
             
         }

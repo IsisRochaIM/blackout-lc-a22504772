@@ -49,7 +49,7 @@ namespace Blackout
             {
                 for (int y = 0; y < board.GetLength(1); y++) 
                 {
-                    if(board[x, y] == 0)
+                    if(board[y,x] == 0)
                     {
                         grid.SetPixel(x, y, Color.Aqua);
                     }

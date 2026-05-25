@@ -97,6 +97,7 @@ namespace Blackout
 
             }  
 
+            view.ShowGrid(lista);
             Console.WriteLine("Congractulations");
             
         }
