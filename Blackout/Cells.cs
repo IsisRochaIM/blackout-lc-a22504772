@@ -11,6 +11,23 @@ namespace Blackout
         public Cells()
         {
             isActive = true;
-        }    
+        } 
+
+        public void ChangeState()
+        {
+            isActive = !isActive;
+        } 
+
+        public bool GetState()
+        {
+            if (isActive)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }  
     }
 }
