@@ -7,6 +7,10 @@ namespace Blackout
 {
     public interface IView
     {
-        void ShowGrid(int[,] board);
+        /*
+        public void ShowGrid(int[,] board);
+        */
+
+        public void ShowCellsGrid(Cells[,] board);
     }
 }

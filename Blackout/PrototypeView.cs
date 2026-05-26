@@ -30,6 +30,7 @@ namespace Blackout
             }
         }
         
+        /*        
         public void ListBoard(int[,] board)
         {
             for (int i = 0; i < board.GetLength(0); i++) 
@@ -41,8 +42,10 @@ namespace Blackout
                 Console.WriteLine();
             }  
         }
+        */
 
-         public void ShowGrid(int[,] board)
+        /*
+        public void ShowGrid(int[,] board)
         {
             Canvas grid = new Canvas(board.Length, board.Length);
 
@@ -51,6 +54,31 @@ namespace Blackout
                 for (int y = 0; y < board.GetLength(1); y++) 
                 {
                     if(board[y,x] == 0)
+                    {
+                        grid.SetPixel(x, y, Color.Aqua);
+                    }
+                    else
+                    {
+                        grid.SetPixel(x, y, Color.DeepPink4_2);
+                    }
+                }
+            }
+
+            
+
+            AnsiConsole.Write(grid);
+        }
+        */
+
+        public void ShowCellsGrid(Cells[,] board)
+        {
+            Canvas grid = new Canvas(board.GetLength(0), board.GetLength(1));
+
+            for (int x = 0; x < board.GetLength(0); x++) 
+            {
+                for (int y = 0; y < board.GetLength(1); y++) 
+                {
+                    if(board[y,x].GetState() == false)
                     {
                         grid.SetPixel(x, y, Color.Aqua);
                     }
@@ -76,7 +104,7 @@ namespace Blackout
             Console.WriteLine("Coordenada invalida");
         }
 
-        public (int, int) CoordinatesInput(int x, int y)
+        /*public (int, int) CoordinatesInput(int x, int y)
         {
             //Pede as cordenadas da peça
             Console.WriteLine("Coloca o Y que desejas alterar");
@@ -86,6 +114,42 @@ namespace Blackout
 
             return (x, y);
 
+        }
+        */
+
+        public (int, int) PlayerCoordinatesInput(int x, int y)
+        {
+            Console.WriteLine("Coloca o Y que desejas alterar");
+            string xInput = Console.ReadLine();
+            if(xInput == "exit")
+            {
+                return (-1, -1);
+            }
+
+
+            Console.WriteLine("Coloca o X que desejas alterar");
+            string yInput = Console.ReadLine();
+            if(yInput == "exit")
+            {
+                return (-1, -1);
+            }
+          
+            try
+            {
+                x = Convert.ToInt32(xInput);
+                y = Convert.ToInt32(yInput);
+
+                return (x, y);
+            }
+            catch
+            {
+                return (-2, -2);
+            }
+        }
+
+        public void ShowExitMensage()
+        {
+            Console.WriteLine("Obrigado por jogar");
         }
     }
 }

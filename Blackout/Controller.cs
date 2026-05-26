@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Blackout
@@ -12,41 +13,35 @@ namespace Blackout
             int dificulty = 0;
             dificulty = view.DificultyInput(dificulty);
 
-            int[,] list;
+            Cells[,] list;
 
             bool isChoiceMade = false;
-
-            int totalOfActiveCells = 0;
 
             while(isChoiceMade == false)
             {
                 switch (dificulty)
                 {
                 case 0:
-                    board.CreateBoard(3);
+                    board.CreateBoardOfCells(3);
                     isChoiceMade = true;
-                    totalOfActiveCells = 9;
                 break;
 
                 case 1:
-                    board.CreateBoard(5);
+                    board.CreateBoardOfCells(5);
                     isChoiceMade = true;
-                    totalOfActiveCells = 25;
                 break;
 
                 case 2:
-                    board.CreateBoard(8);
+                    board.CreateBoardOfCells(8);
                     isChoiceMade = true;
-                    totalOfActiveCells = 64;
                 break;
                 default:
                 break;
                 }
             }
 
-            list = board.GetBoard();
-
-            int numberOfActiveCells = 0;
+            list = board.GetBoardOfCells();
+           
     
             //
             //Estepedaço de codigo basicamente altera a posiçao que o jogador selecionou
@@ -54,39 +49,61 @@ namespace Blackout
             //No final conta quantas peças estão ativas
             //Só quando todas elas tiverem ativas é que sai do while
             //
-            while(numberOfActiveCells != totalOfActiveCells)
+            while(true)
             {
-                
-
-                view.ShowGrid(list);
-
-                //Reseta a conagem de peças, para não somar as da jogada anterior
-                numberOfActiveCells = 0;
+                view.ShowCellsGrid(list);
 
                 int coordinateX = 0;
 
                 int coordinateY = 0;
 
-                (coordinateX, coordinateY) = view.CoordinatesInput(coordinateX, coordinateY);
-                
+                bool isVictory = true;
 
-                board.ChangeCellsValue(coordinateX, coordinateY, list);
-                
-                
-                //Conta quantas peças estão ativas
-                //Serve para caso estejam todas, ele sair dps do while
-                for (int i = 0; i < list.GetLength(0); i++) 
-                { 
-                    for (int j = 0; j < list.GetLength(1); j++) 
+                (coordinateX, coordinateY) = view.PlayerCoordinatesInput(coordinateX, coordinateY);
+
+                if(coordinateX == -1 || coordinateY == -1)
+                {
+                    view.ShowExitMensage();
+                    break;
+                }
+
+                if(coordinateX == -2 || coordinateY == -2)
+                {
+                    view.ShowErrorInvalidCoordinateMensage();
+                    continue;
+                }
+
+                if(coordinateX < 0 || coordinateX >= list.GetLength(0) || coordinateY < 0 || coordinateY >= list.GetLength(1))
+                {
+                    view.ShowErrorInvalidCoordinateMensage();
+                    continue;
+                }
+                else
+                {
+                    board.ChangeBoardCellsValue(coordinateX, coordinateY, list);
+
+                    for (int i = 0; i < list.GetLength(0); i++) 
                     { 
-                        numberOfActiveCells +=list[i, j]; 
+                        for (int j = 0; j < list.GetLength(1); j++) 
+                        { 
+                            if(list[i,j].GetState() == true)
+                            {
+                                isVictory = !isVictory;
+                                break;
+                            }  
+                        } 
+                      
+                    }
+                    if(isVictory == true)
+                    {
+                        view.ShowCellsGrid(list);
+                        view.ShowVictoryMensage();
+                        view.ShowExitMensage();
+                        break;
                     } 
                 }  
-
-            }  
-
-            view.ShowGrid(list);
-            view.ShowVictoryMensage();
+            }
+            
             
         }
     }

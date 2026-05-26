@@ -12,6 +12,7 @@ namespace Blackout
 
         private PrototypeView view;
 
+        /*
         public void CreateBoard(int boardSize)
         {
             int[,] newBoard = new int[boardSize, boardSize];
@@ -28,7 +29,7 @@ namespace Blackout
 
             board = newBoard;
         }
-
+        */
         public void CreateBoardOfCells(int boardSize)
         {
             Cells[,] newCellsBoard = new Cells[boardSize, boardSize];
@@ -59,74 +60,57 @@ namespace Blackout
             //Dependendo de como estiver, ele inverte o estado
             //Caso a peça não exista, ele simplesmente não faz nada (por isso os trys)
             //
-
-            bool error = false;
             try
             {
-               board[x,y].ChangeState();
+                board[x,y].ChangeState();
+            }
+            
+            catch
+            {
+                    
+            }
+           
+            try
+            {
+                board[x+1,y].ChangeState();
             }
             catch
             {
-                view.ShowErrorInvalidCoordinateMensage();
-                error = true;
-            }
-
-            if(error == false)
-            {
-                try
-                {
-                    board[x+1,y].ChangeState();
-                }
-                catch
-                {
                     
-                }
             }
             
-
-            if(error == false)
+            try
             {
-
-                try
-                {
-                    board[x-1,y].ChangeState();
-                }
+                board[x-1,y].ChangeState();
+            }
                 
-                catch
-                {
-                    
-                }
-            }
-
-            if(error == false)
+            catch
             {
-
-                try
-                {
-                    board[x,y+1].ChangeState();
-                }
-                catch
-                {
                     
-                }
             }
 
-
-            if(error == false)
+            try
             {
-
-                try
-                {
-                    board[x,y-1].ChangeState();
-                }
-                catch
-                {
-                    
-                }
+                board[x,y+1].ChangeState();
             }
+            catch
+            {
+                    
+            }
+
+            try
+            {
+                board[x,y-1].ChangeState();
+            }
+            catch
+            {
+                    
+            }
+            
             
         }
 
+        /*
         public int[,] GetBoard()
         {
             return board;
@@ -240,7 +224,9 @@ namespace Blackout
                 }
             }
             
+            
         }
+        */
         
     }
 }
