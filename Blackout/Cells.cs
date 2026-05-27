@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace Blackout
 {
+    /// <summary>
+    /// This class represents the cells of the game,
+    ///  it only exists to be used in the board.
+    /// </summary>
     public class Cells
     {
         //Creating the variable that defines the cell's state

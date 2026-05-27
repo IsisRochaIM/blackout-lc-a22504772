@@ -7,6 +7,11 @@ using Spectre.Console;
 
 namespace Blackout
 {
+    /// <summary>
+    /// This class represents the prototype view of the game,
+    ///  it implements the IView interface and is responsible for 
+    /// showing and colecting information from the user.
+    /// </summary>
     public class PrototypeView : IView
     {
        

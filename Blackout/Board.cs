@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Blackout
 {
+    /// <summary>
+    /// This class represents the board of the game.
+    /// </summary>
     public class Board
     {
         //Board contains a array of arrays of cells, witch represents the board.
