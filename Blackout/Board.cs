@@ -7,12 +7,18 @@ namespace Blackout
 {
     public class Board
     {
+        //Board contains a array of arrays of cells, witch represents the board.
         private Cells[,] boardCells;
-        public int[,] board;
 
+        //Board contains an instance of view to show the board to the player.
         private PrototypeView view;
 
-
+        /// <summary>
+        /// This method creates a board of cells with the size acording to the 
+        /// dificulty selected by the player.
+        /// </summary>
+        /// <param name="boardSize">Representation of the board size according
+        ///  to the selected difficulty.</param>
         public void CreateBoardOfCells(int boardSize)
         {
             Cells[,] newCellsBoard = new Cells[boardSize, boardSize];
@@ -30,32 +36,43 @@ namespace Blackout
             boardCells = newCellsBoard;
         }
 
-
+        /// <summary>
+        /// This method returns an array of arrays of instances of cells, 
+        /// without receive any parameter.
+        /// </summary>
+        /// <returns>The board of cells.</returns>
         public Cells[,] GetBoardOfCells()
         {
             return boardCells;
         }
 
+        /// <summary>
+        /// This method changes the state of the cell selected and the cells 
+        /// around it, those being the adjacent cells (up, down, left, right) 
+        /// if they exist.
+        /// </summary>
+        /// <param name="x">Coordinate x of the selected cell.</param>
+        /// <param name="y">Coordinate y of the selected cell.</param>
+        /// <param name="board">The array of arrays of cells.</param>
         public void ChangeBoardCellsValue(int x, int y, Cells[,] board)
         {
-            //
-            //Estes trys todos basicamente vão verificar se a peça está ativa ou não
-            //Tanto a peça selecionada com as em volta
-            //Dependendo de como estiver, ele inverte o estado
-            //Caso a peça não exista, ele simplesmente não faz nada (por isso os trys)
-            //
+            //Try to change the state of the selected cell if they exist, 
+            // otherwise do nothing.
             try
-            {
+            {  
+                //Change the state of the cell corresponding to the coordinates selected.
                 board[x,y].ChangeState();
             }
-            
             catch
             {
                     
             }
            
+            //Try to change the state of the cell at the right side of the 
+            // selected cell if they exist, otherwise do nothing.
             try
             {
+                //Change the state of the cell corresponding to the coordinates selected.
                 board[x+1,y].ChangeState();
             }
             catch
@@ -63,8 +80,11 @@ namespace Blackout
                     
             }
             
+            //Try to change the state of the cell at the left side of the 
+            // selected cell if they exist, otherwise do nothing.
             try
             {
+                //Change the state of the cell corresponding to the coordinates selected.
                 board[x-1,y].ChangeState();
             }
                 
@@ -73,8 +93,11 @@ namespace Blackout
                     
             }
 
+            //Try to change the state of the cell at the bottom side of the 
+            // selected cell if they exist, otherwise do nothing.
             try
             {
+                //Change the state of the cell corresponding to the coordinates selected.
                 board[x,y+1].ChangeState();
             }
             catch
@@ -82,8 +105,11 @@ namespace Blackout
                     
             }
 
+            //Try to change the state of the cell at the top side of the 
+            // selected cell if they exist, otherwise do nothing.
             try
             {
+                //Change the state of the cell corresponding to the coordinates selected.
                 board[x,y-1].ChangeState();
             }
             catch
