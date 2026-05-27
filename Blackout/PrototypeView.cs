@@ -41,6 +41,8 @@ namespace Blackout
                     Console.WriteLine();
                     AnsiConsole.MarkupLine("[bold Red]Hard[/] - Play with a [bold CadetBlue_1]8x8[/] board and starts with 8 pre-selected coordinates randomly placed on the board.");
                     Console.WriteLine("\n");
+
+                    //Ask user for difficulty level
                     Console.Write("Your choice: ");
                     dif = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine();
@@ -53,7 +55,7 @@ namespace Blackout
                 }
             }
         }
-        
+
 
         /// <summary>
         /// Method for displaying the current state of the board to the user
@@ -76,7 +78,7 @@ namespace Blackout
             string header = "";
             for(int col = 0; col < board.GetLength(0); col++)
             {
-                header += col + " ";
+                header += col + "   ";
             }
             Console.WriteLine(header);
 
@@ -96,7 +98,7 @@ namespace Blackout
             string rowNumbers = "";
             for (int x = 0; x < rows; x++)
             {
-                rowNumbers += x + "\n";
+                rowNumbers += x + "\n\n";
             }
 
             //Create a table that includes both the image of the board and the row numbers
@@ -106,10 +108,12 @@ namespace Blackout
             grid.AddRow(canvas, new Markup(rowNumbers));
 
             //Increase the size of the board
-            canvas.MaxWidth = 10;
+            canvas.MaxWidth = board.GetLength(0) * 4;
             //Show the board
             AnsiConsole.Write(grid);
         }
+
+
 
         /// <summary>
         /// A method for letting the player know they've won the game
@@ -119,6 +123,7 @@ namespace Blackout
             AnsiConsole.MarkupLine("[Black on Teal]Congratulations!!![/]");
         }
 
+
         /// <summary>
         /// Method for informing the player that the entered coordinate does not exist
         /// </summary>
@@ -126,6 +131,7 @@ namespace Blackout
         {
             AnsiConsole.MarkupLine("[red]Invalid coordinate[/], please try again.");
         }
+
 
         /// <summary>
         /// Prompts the user for coordinates and sends them to the method that called it
@@ -152,7 +158,7 @@ namespace Blackout
             Console.WriteLine();
             
             //Ask the user for the X coordinate
-            AnsiConsole.MarkupLine("Select a number from those represented on the board for the [Chartreuse1]X[/] coordinate of the cell you want to change:");
+            AnsiConsole.MarkupLine("Select a number from those represented on the board for the [Chartreuse1]row[/] of the coordinate of the cell you want to change:");
             Console.WriteLine();
 
             //get the X coordinate from the user
@@ -167,7 +173,7 @@ namespace Blackout
             }
 
             //Ask the user for the Y coordinate
-            AnsiConsole.MarkupLine("Select a number from those represented on the board for the [Chartreuse1]Y[/] coordinate of the cell you want to change:");
+            AnsiConsole.MarkupLine("Select a number from those represented on the board for the [Chartreuse1]column[/] of the coordinate of the cell you want to change:");
             Console.WriteLine();
 
             //get the Y coordinate from the user
@@ -196,6 +202,7 @@ namespace Blackout
             }
         }
 
+
         /// <summary>
         /// Displays a farewell message to the user after they select “Exit”
         /// </summary>
@@ -204,6 +211,7 @@ namespace Blackout
             AnsiConsole.MarkupLine("Thanks for playing![bold CadetBlue_1] See you next time![/]");
         }
         
+
         /// <summary>
         /// Displays the instructions of the game to the user at the beginning of the game.
         /// </summary>

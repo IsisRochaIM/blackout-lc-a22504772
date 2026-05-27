@@ -21,10 +21,15 @@ namespace Blackout
         ///  to the selected difficulty.</param>
         public void CreateBoardOfCells(int boardSize)
         {
+            //Create the board with the size that players told
             Cells[,] newCellsBoard = new Cells[boardSize, boardSize];
-            int numerocliques;
+            
+
+            //Creation of a new random
             Random random = new Random();
 
+            //Take the number of clicks based on difficulty
+            int numerocliques;
             if(boardSize == 3)
             {
                 numerocliques = 3;
@@ -61,6 +66,7 @@ namespace Blackout
             boardCells = newCellsBoard;
 
         }
+        
 
         /// <summary>
         /// This method returns an array of arrays of instances of cells, 
@@ -71,6 +77,7 @@ namespace Blackout
         {
             return boardCells;
         }
+
 
         /// <summary>
         /// This method changes the state of the cell selected and the cells 

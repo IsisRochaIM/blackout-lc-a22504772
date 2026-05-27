@@ -20,11 +20,13 @@ namespace Blackout
             isActive = false;
         } 
 
+
         //Toggle to “On” if it is “Off,” and vice versa
         public void ChangeState()
         {
             isActive = !isActive;
         } 
+
 
         //Returns the cell's status
         public bool GetState()

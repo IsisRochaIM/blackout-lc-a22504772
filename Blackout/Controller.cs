@@ -21,13 +21,12 @@ namespace Blackout
         public void Run(PrototypeView view, Board board)
         {
             //Show the instructions of the game to the user at the beginning of the game.
-             view.ShowGameInstructions();
+            view.ShowGameInstructions();
 
             //A variable that represents the difficulty level of the game.
             int dificulty = 0;
 
-            //Ask the user to select a difficulty level.
-            dificulty = view.DificultyInput(dificulty);
+           
 
             //Create a list that will serve as a board.
             Cells[,] list;
@@ -41,39 +40,38 @@ namespace Blackout
             // creating a board based on that same difficulty.
             while(isChoiceMade == false)
             {
-                //Switch case that checks the player's choice and creates the board based on it.
-                switch (dificulty)
-                {
+                //Ask the user to select a difficulty level.
+                dificulty = view.DificultyInput(dificulty);
 
                 //If the player input is 0(easy), create a board of 3x3.
-                case 0:
+                if(dificulty == 0)
+                {
                     //Call the method for creating a board of 3x3.
                     board.CreateBoardOfCells(3);
 
                     //Confirm that the player has made a choice and finish the while loop.
                     isChoiceMade = true;
-                break;
-
-                //If the player input is 1(medium), create a board of 5x5.
-                case 1:
+                }
+                    
+                if(dificulty == 1)
+                {
                     //Call the method for creating a board of 5x5.
                     board.CreateBoardOfCells(5);
 
                     //Confirm that the player has made a choice and finish the while loop.
                     isChoiceMade = true;
-                break;
+                }
 
                 //If the player input is 2(hard), create a board of 8x8.
-                case 2:
+                if(dificulty == 2)
+                {
                     //Call the method for creating a board of 8x8.
                     board.CreateBoardOfCells(8);
 
                     //Confirm that the player has made a choice and finish the while loop.
                     isChoiceMade = true;
-                break;
-                default:
-                break;
                 }
+                
             }
 
             //Receive the board that was created

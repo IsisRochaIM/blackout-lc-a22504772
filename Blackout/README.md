@@ -33,6 +33,16 @@ LPBlackout:
 [Link para o repositório](https://github.com/GoncaloAlmeidaPtArt/LPBlackout.git)
 
 ## Arquitetura da solução e Algorítimos: 
+O projeto está organizado utilizando o modelo MVC:
+
+<p>O Model contem: Board, Cell. Estas classes representam os elementos do jogo, sendo o principal o tabuleiro (Board) e a Cell que continitui o proprio tabuleiro</p>
+<p>O View contem: IView, prototypeView. Esta classe e interface são as responsaveis por mostrar ao utilizador qualquer tipo de interface grafica ou interação que haja no programa</p>
+<p>O Controller contem: Controller. Esta classe é a que efetivamente roda o programa, contendo o seu game loop, sendo o core que o jogo seguira todos os jogos<P>
+
+<p>O programa pede ao utilizador uma dificuldade</p>
+<p>Baseada na dificuldade cria um tabuleiro com X tamanho e Y peças aleatorias inseridas</p>
+<p>Depois, num loop, vai pedindo e alterando as peças que o jogador seleciona (e aquela ao seu redor)</p>
+<p>O jogo termina quando todas as peças ficam ativas.</p>
 
 ## Diagrama UML de classes: 
 ```mermaid
@@ -52,7 +62,6 @@ PrototypeView ..> Cells
 ### Bibliotecas: 
 Spectre.Console
 ### Referências, IA ou Código de terceiros: 
-<p>Ultilizado a ferramenta de IA Copilot para automatizar tarefas não relacionadas 
-com a realização da lógica do script. Estas sendo: Mudar o nome de variáveis automaticamente por todo o código, escrever strings para outputs de teste e auxiliar na escrita dos comentários.
+<p>Para este trabalho utilizamos bastantes referencias da API [Link da API](https://spectreconsole.net/console)
 </p>
 
