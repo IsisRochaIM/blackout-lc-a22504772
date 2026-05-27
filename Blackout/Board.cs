@@ -84,6 +84,7 @@ namespace Blackout
             {  
                 //Change the state of the cell corresponding to the coordinates selected.
                 board[x,y].ChangeState();
+            }
 
             catch
             {
@@ -144,6 +145,7 @@ namespace Blackout
             {
                     
             }
+            
         }
     }
 }
