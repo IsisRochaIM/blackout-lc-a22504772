@@ -20,6 +20,9 @@ namespace Blackout
         /// <param name="board"></param>
         public void Run(PrototypeView view, Board board)
         {
+            //Show the instructions of the game to the user at the beginning of the game.
+             view.ShowGameInstructions();
+
             //A variable that represents the difficulty level of the game.
             int dificulty = 0;
 
