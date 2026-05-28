@@ -183,8 +183,6 @@ namespace Blackout
                          //Armazenate the section score 
                         score.ArmazenateScores(numOfPlays, listOfScores);
 
-
-
                         //Break the while loop, ending the game.
                         break;
 

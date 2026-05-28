@@ -15,16 +15,21 @@ namespace Blackout
 
         public void ArmazenateScores(int plays, List<int> scores)
         {
-            //StreamReader reader = new StreamReader(filePath);
+            //add the last score to the list
             scores.Add(plays);
 
+            //sort the list
             scores.Sort();
 
+            //create a temporary list
             List<int> list = new List<int>();
+
+            //add the numbers to the temporary list
             foreach(int i in scores)
             {
                 list.Add(i);
             }
+            
             File.Delete(filePath);
 
             File.Create("HighScores.txt");
@@ -36,6 +41,7 @@ namespace Blackout
                 writer.WriteLine("{i}");
             }
 
+            writer.Close();
 
         }
 

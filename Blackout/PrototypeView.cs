@@ -23,8 +23,11 @@ namespace Blackout
 
             while((s = reader.ReadLine()) != null)
             {
-                Console.WriteLine();
+                Console.WriteLine(s);
             }
+
+            reader.Close();
+
         }
         /// <summary>
         /// Method for determining the game's difficulty
