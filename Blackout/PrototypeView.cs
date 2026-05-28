@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Spectre.Console;
-
+using System.IO;
 namespace Blackout
 {
     /// <summary>
@@ -14,7 +14,18 @@ namespace Blackout
     /// </summary>
     public class PrototypeView : IView
     {
-       
+        private string filePath = @"c:Blackout\HighScores";
+       public void ShowLastHighScores()
+        {
+            using StreamReader reader = new StreamReader(filePath);
+
+            string s;
+
+            while((s = reader.ReadLine()) != null)
+            {
+                Console.WriteLine();
+            }
+        }
         /// <summary>
         /// Method for determining the game's difficulty
         /// Ask the user to select a difficulty level, collect the response, and send it to an integer in the class that called it
@@ -172,6 +183,10 @@ namespace Blackout
                 return (-1, -1);
             }
 
+             if(xInput == "auto")
+            {
+                return (-5, -5);
+            }
             //Ask the user for the Y coordinate
             AnsiConsole.MarkupLine("Select a number from those represented on the board for the [Chartreuse1]column[/] of the coordinate of the cell you want to change:");
             Console.WriteLine();

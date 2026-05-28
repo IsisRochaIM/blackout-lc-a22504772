@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.AccessControl;
-
+using System.IO;
 namespace Blackout
 {
     /// <summary>
@@ -25,9 +25,11 @@ namespace Blackout
 
             //Create an instance of the class Board.
             Board board = new Board();
+
+            HighScore score = new HighScore();
             
             //Call the controller with the view and the board embedded.
-            controller.Run(view, board);
+            controller.Run(view, board, score);
 
         }
         

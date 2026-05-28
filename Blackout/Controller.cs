@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Spectre.Console;
+using System.IO;
 
 namespace Blackout
 {
@@ -18,15 +19,20 @@ namespace Blackout
         /// </summary>
         /// <param name="view"></param>
         /// <param name="board"></param>
-        public void Run(PrototypeView view, Board board)
+        public void Run(PrototypeView view, Board board, HighScore score)
         {
+
             //Show the instructions of the game to the user at the beginning of the game.
             view.ShowGameInstructions();
 
             //A variable that represents the difficulty level of the game.
             int dificulty = 0;
+            
+            //armazenate the number os plays
+            int numOfPlays = 0;
 
-           
+            //Create a list to be used by scores 
+            List<int> listOfScores = new List<int>();
 
             //Create a list that will serve as a board.
             Cells[,] list;
@@ -109,6 +115,24 @@ namespace Blackout
                     break;
                 }
 
+                //if the coordinates match those of the auto, auto win
+                if(coordinateX == -5 || coordinateY == -5)
+                {
+
+                     //Show the board.
+                    view.ShowCellsGrid(list);
+
+                    //Show the victory message.
+                    view.ShowVictoryMensage();
+
+                    //show the exit message.
+                    view.ShowExitMensage();
+
+                    //Armazenate the section score 
+                    score.ArmazenateScores(numOfPlays, listOfScores);
+
+                }
+
                 //If the coordinates are incorrect, it indicates that they are invalid.
                 if(coordinateX == -2 || coordinateY == -2 || 
                 coordinateX < 0 || coordinateX >= list.GetLength(0) ||
@@ -126,6 +150,8 @@ namespace Blackout
                     //Swap the cells on the board with their opposites 
                     // (based on their coordinates)
                     board.ChangeBoardCellsValue(coordinateX, coordinateY, list);
+
+                    numOfPlays ++;
 
                     //A for loop nested inside another for loop that checks
                     //  whether any cells are disconnected
@@ -154,8 +180,16 @@ namespace Blackout
                         //show the exit message.
                         view.ShowExitMensage();
 
+                         //Armazenate the section score 
+                        score.ArmazenateScores(numOfPlays, listOfScores);
+
+
+
                         //Break the while loop, ending the game.
                         break;
+
+                       
+
                     } 
                 }  
             }
