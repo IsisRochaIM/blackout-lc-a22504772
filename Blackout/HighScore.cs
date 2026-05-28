@@ -12,7 +12,11 @@ namespace Blackout
 
         private string filePath = @"c:Blackout\HighScores";
 
-
+        /// <summary>
+        /// armazenate the new score, sort the scores and armazenate in a new file
+        /// </summary>
+        /// <param name="plays"></param>
+        /// <param name="scores"></param>
         public void ArmazenateScores(int plays, List<int> scores)
         {
             //add the last score to the list
@@ -20,22 +24,17 @@ namespace Blackout
 
             //sort the list
             scores.Sort();
-
-            //create a temporary list
-            List<int> list = new List<int>();
-
-            //add the numbers to the temporary list
-            foreach(int i in scores)
-            {
-                list.Add(i);
-            }
             
+            //delete the last file
             File.Delete(filePath);
-
+            
+            //create a new file with the same name
             File.Create("HighScores.txt");
+
 
             using StreamWriter writer = new StreamWriter(filePath);
             
+            //rewrite the new scores order on the new file
             foreach(int s in scores)
             {
                 writer.WriteLine("{i}");
