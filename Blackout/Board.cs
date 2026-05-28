@@ -101,7 +101,54 @@ namespace Blackout
             {
                     
             }
+            //Try to change the state of the cell at the down right diagonal of the 
+            // selected cell if they exist, otherwise do nothing.
+            try
+            {  
+                //Change the state of the cell corresponding to the coordinates selected.
+                board[x+1,y+1].ChangeState();
+            }
 
+            catch
+            {
+                    
+            }
+            //Try to change the state of the cell at the down left diagonal of the 
+            // selected cell if they exist, otherwise do nothing.
+             try
+            {  
+                //Change the state of the cell corresponding to the coordinates selected.
+                board[x-1,y+1].ChangeState();
+            }
+
+            catch
+            {
+                    
+            }
+            //Try to change the state of the cell at the up right diagonal of the 
+            // selected cell if they exist, otherwise do nothing.
+             try
+            {  
+                //Change the state of the cell corresponding to the coordinates selected.
+                board[x+1,y-1].ChangeState();
+            }
+
+            catch
+            {
+                    
+            }
+            //Try to change the state of the cell at the up left diagonal of the 
+            // selected cell if they exist, otherwise do nothing.
+             try
+            {  
+                //Change the state of the cell corresponding to the coordinates selected.
+                board[x-1,y-1].ChangeState();
+            }
+
+            catch
+            {
+                    
+            }
            
             //Try to change the state of the cell at the right side of the 
             // selected cell if they exist, otherwise do nothing.
